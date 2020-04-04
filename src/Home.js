@@ -5,6 +5,7 @@ function Home() {
   const innital = {option1:"Yes", option2:"No", option3:"None"};
   const [radio, setRadio] = useState(innital.option3);
   const [open, setOpen] = useState(false);
+  const[context, setContext] = useState(false);
 
   function handleChange(event) {
     const value = event.target.value;
@@ -14,6 +15,11 @@ function Home() {
   function onOpenClick(event) {
     event.preventDefault();
     setOpen(old=>!old);
+  }
+
+  function onSelect(event) {
+    event.preventDefault();
+    setContext(old=>!old);
   }
 
   return (
@@ -49,7 +55,8 @@ function Home() {
         <div className="w-75">
           <div className="container pr-0">
             <h2>Cry For A Shadow</h2>
-            <p className="text-justify">{content}</p>
+            <p className={"text-justify " + (context? "text-success" : "text-dark")}
+               onContextMenu={onSelect}>{content}</p>
           </div>
         </div>
       </div>
@@ -57,5 +64,4 @@ function Home() {
     </div>
   )
 }
-
 export default Home;
