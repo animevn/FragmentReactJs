@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+
 import {content} from "./Constants";
 import {Radio} from "@material-ui/core";
 
@@ -54,23 +55,38 @@ function Home() {
           </RadioGroup>
         </Box>
 
-        <div className="row col-xl-7 col-lg-8 col-md-10 col-sm-12 col-12 mx-auto my-3 px-0">
-          <div className="d-flex flex-column w-25">
-            <img className="img-thumbnail rounded-lg w-75 h-auto mt-2"
-                 src="images/beatles_anthology_box.webp" alt="beatles"/>
-            <button className="btn btn-outline-success mt-4 w-75" onClick={onOpenClick}>
-              {open ? "Close" : "Open"}
-            </button>
-          </div>
+        <Box display="flex" flexDirection="row">
+          <Box display="flex" flexDirection="column" alignItems="center" width={0.25} mt={2}>
+            <Box mt={1} border={1} borderColor="red" borderRadius={5}
+                 display="flex"
+                 flexDirection="row"
+                 justifyContent="center"
+                 alignItems="center"
+                 overflow="hidden">
+              <img src="images/beatles_anthology_box.webp"
+                   alt="beatles"/>
+            </Box>
 
-          <div className="w-75">
-            <div className="container pr-0">
-              <h2>Cry For A Shadow</h2>
-              <p className={"text-justify " + (context? "text-success" : "text-dark")}
-                 onContextMenu={onSelect}>{content}</p>
-            </div>
-          </div>
-        </div>
+            <Box mt={2}>
+              <Button variant="contained" color="secondary" onClick={onOpenClick}>
+                {open ? "Close" : "Open"}
+              </Button>
+            </Box>
+          </Box>
+
+          <Box display="flex" flexDirection="column" width={0.75} px={1} mt={2}>
+            <Typography variant="h4">Cry For A Shadow</Typography>
+            <Box textAlign="justify" mt={2} onContextMenu={onSelect}
+                 color={context ? "red" : "black"}>
+              <Typography component="div">
+                <Box lineHeight={1.8}>
+                  {content}
+                </Box>
+              </Typography>
+            </Box>
+          </Box>
+
+        </Box>
       </Grid>
     </Grid>
   )
